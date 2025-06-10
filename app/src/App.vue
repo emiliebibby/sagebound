@@ -3,10 +3,12 @@
         <main>
             <router-view class="flex-1 w-full h-full p-0 m-0" />
         </main>
+        <BottomNav />
     </div>
 </template>
 
 <script setup>
+import BottomNav from './components/BottomNav.vue'
 // No need to import components here, routing handles it
 </script>
 

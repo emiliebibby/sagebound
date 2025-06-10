@@ -12,7 +12,8 @@
                 <div class="mb-6">
                     <Password v-model="confirmPassword" placeholder="Confirm Password" toggleMask inputClass="w-full" class="w-full" />
                 </div>
-                <Button label="Register" type="submit" class="w-full" :loading="loading" />
+                <Button label="Register" type="submit" class="w-full mb-2" :loading="loading" />
+                <Button label="Back to Login" class="w-full p-button-secondary" @click.prevent="goToLogin" />
                 <p v-if="error" class="text-red-500 text-sm mt-4 text-center">{{ error }}</p>
                 <p v-if="success" class="text-green-500 text-sm mt-4 text-center">{{ success }}</p>
             </form>
@@ -27,6 +28,7 @@ import Password from 'primevue/password'
 import Button from 'primevue/button'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase'
+import { useRouter } from 'vue-router'
 
 const email = ref('')
 const password = ref('')
@@ -34,6 +36,7 @@ const confirmPassword = ref('')
 const error = ref('')
 const success = ref('')
 const loading = ref(false)
+const router = useRouter()
 
 const register = async () => {
     error.value = ''
@@ -49,11 +52,16 @@ const register = async () => {
         email.value = ''
         password.value = ''
         confirmPassword.value = ''
+        router.push({ name: 'Home' }) // Redirect to home after successful registration
     } catch (e) {
         error.value = e.message
     } finally {
         loading.value = false
     }
+}
+
+const goToLogin = () => {
+    router.push({ name: 'Login' })
 }
 </script>
 
