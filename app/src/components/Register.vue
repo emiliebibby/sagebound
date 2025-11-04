@@ -29,6 +29,9 @@ import Button from 'primevue/button'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase'
 import { useRouter } from 'vue-router'
+import { createUserInMongo } from '../api'
+import { getAuth, updateProfile } from 'firebase/auth'
+import { createUser } from '../models/user.js'
 
 const email = ref('')
 const password = ref('')
@@ -47,12 +50,26 @@ const register = async () => {
     }
     loading.value = true
     try {
-        await createUserWithEmailAndPassword(auth, email.value, password.value)
-        success.value = 'Registration successful! You can now log in.'
+        // Register user in Firebase
+        const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value)
+        const user = userCredential.user
+        // Optionally set displayName in Firebase
+        await updateProfile(user, { displayName: email.value.split('@')[0] })
+        // Register user in MongoDB
+        await createUserInMongo(
+            createUser({
+                name: user.displayName || email.value.split('@')[0],
+                email: user.email,
+                passwordHash: 'firebase', // Not storing password, just a placeholder
+                avatarUrl: user.photoURL || '',
+                firebaseUid: user.uid
+            })
+        )
+        success.value = 'Registration successful!'
         email.value = ''
         password.value = ''
         confirmPassword.value = ''
-        router.push({ name: 'Home' }) // Redirect to home after successful registration
+        router.push({ name: 'Home' })
     } catch (e) {
         error.value = e.message
     } finally {
