@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sagebound - Rose & Pine</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://unpkg.com/primeicons/primeicons.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --rose: #BD7880;
+      --pink: #FFD9D9;
+      --wine: #4D0011;
+      --blush: #FFE8E8;
+      --soft-rose: #D4989E;
+      --pine: #102B1F;
+      --sage: #8BA888;
+      --forest: #1A4D2E;
+      --cream: #FFF5F0;
+      --warm-gray: #8B7B7A;
+      --charcoal: #2D2D2D;
+      
+      --gradient-rose: linear-gradient(135deg, #BD7880 0%, #D4989E 100%);
+      --gradient-wine: linear-gradient(135deg, #4D0011 0%, #BD7880 100%);
+      --gradient-blush: linear-gradient(135deg, #FFD9D9 0%, #FFE8E8 100%);
+      --gradient-pine: linear-gradient(135deg, #102B1F 0%, #8BA888 100%);
+      --gradient-elegant: linear-gradient(135deg, #102B1F 0%, #4D0011 100%);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(180deg, #FFF5F0 0%, #FFE8E8 100%);
+      color: var(--charcoal);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Cinzel', Georgia, serif;
+    }
+
+    /* Phone Frame */
+    .phone-container {
+      max-width: 430px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 60px;
+      padding: 20px;
+      box-shadow: 0 20px 60px rgba(189, 120, 128, 0.3),
+                  0 0 0 10px rgba(255, 255, 255, 0.8),
+                  0 0 0 20px rgba(212, 152, 158, 0.2);
+      position: relative;
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 30px;
+      background: var(--charcoal);
+      border-radius: 0 0 20px 20px;
+      z-index: 100;
+    }
+
+    .phone-screen {
+      background: var(--cream);
+      border-radius: 45px;
+      overflow: hidden;
+      height: 850px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .app-header {
+      background: linear-gradient(180deg, rgba(255, 245, 240, 0.98) 0%, rgba(255, 245, 240, 0.9) 100%);
+      backdrop-filter: blur(20px);
+      padding: 60px 20px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(189, 120, 128, 0.1);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .greeting {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--gradient-rose);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      box-shadow: 0 4px 12px rgba(189, 120, 128, 0.3);
+    }
+
+    .greeting-text h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--wine);
+      margin-bottom: 2px;
+    }
+
+    .greeting-text p {
+      font-size: 13px;
+      color: var(--warm-gray);
+    }
+
+    .header-icons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: white;
+      border: 1px solid rgba(189, 120, 128, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .icon-btn:active {
+      transform: scale(0.95);
+    }
+
+    .icon-btn i {
+      color: var(--wine);
+      font-size: 18px;
+    }
+
+    .icon-btn .badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 18px;
+      height: 18px;
+      background: var(--rose);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: white;
+      font-weight: 700;
+      border: 2px solid white;
+    }
+
+    /* Search */
+    .search-container {
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 14px 50px 14px 48px;
+      border: none;
+      border-radius: 16px;
+      font-size: 15px;
+      background: white;
+      box-shadow: 0 2px 8px rgba(189, 120, 128, 0.08);
+      transition: all 0.2s ease;
+      color: var(--charcoal);
+    }
+
+    .search-input:focus {
+      outline: none;
+      box-shadow: 0 4px 16px rgba(189, 120, 128, 0.15);
+    }
+
+    .search-input::placeholder {
+      color: var(--warm-gray);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--warm-gray);
+      font-size: 18px;
+    }
+
+    .search-btn {
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: var(--gradient-rose);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(189, 120, 128, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .search-btn:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+
+    .search-btn i {
+      color: white;
+      font-size: 16px;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      padding-bottom: 100px;
+    }
+
+    .main-content::-webkit-scrollbar {
+      width: 0;
+    }
+
+    /* Category Tabs */
+    .category-tabs {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      margin-bottom: 28px;
+      padding-bottom: 4px;
+    }
+
+    .category-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .category-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      min-width: 70px;
+      cursor: pointer;
+    }
+
+    .category-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 2px 8px rgba(189, 120, 128, 0.08);
+      position: relative;
+      border: 1px solid rgba(189, 120, 128, 0.1);
+    }
+
+    .category-tab.active .category-icon {
+      background: var(--gradient-rose);
+      box-shadow: 0 8px 20px rgba(189, 120, 128, 0.3);
+      transform: translateY(-4px);
+      border-color: transparent;
+    }
+
+    .category-tab.new .category-icon::after {
+      content: '';
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 12px;
+      height: 12px;
+      background: var(--wine);
+      border-radius: 50%;
+      border: 2px solid var(--cream);
+    }
+
+    .category-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--warm-gray);
+      transition: color 0.2s ease;
+    }
+
+    .category-tab.active .category-label {
+      color: var(--rose);
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--wine);
+    }
+
+    .section-action {
+      font-size: 14px;
+      color: var(--rose);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .section-action:hover {
+      color: var(--wine);
+    }
+
+    /* Book Cards - Horizontal Scroll */
+    .books-scroll {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scroll-snap-type: x mandatory;
+    }
+
+    .books-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .book-card {
+      flex-shrink: 0;
+      width: 140px;
+      scroll-snap-align: start;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .book-cover-container {
+      position: relative;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(77, 0, 17, 0.15);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .book-card:active .book-cover-container {
+      transform: scale(0.97);
+    }
+
+    .book-cover {
+      width: 140px;
+      height: 210px;
+      object-fit: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gradient-rose);
+      position: relative;
+      color: white;
+      font-size: 56px;
+    }
+
+    /* Book cover overlays for depth */
+    .book-cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,0.1) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.1) 100%);
+      pointer-events: none;
+    }
+
+    .book-cover::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 100%);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .book-bookmark {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 44px;
+      background: var(--gradient-wine);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+    }
+
+    .book-progress {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--wine);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      z-index: 10;
+    }
+
+    .book-info {
+      padding: 0 4px;
+    }
+
+    .book-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--wine);
+      margin-bottom: 4px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.3;
+    }
+
+    .book-author {
+      font-size: 12px;
+      color: var(--warm-gray);
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Large Featured Book Card */
+    .featured-book {
+      width: 100%;
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(189, 120, 128, 0.12);
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(189, 120, 128, 0.1);
+    }
+
+    .featured-book::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(189, 120, 128, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .featured-content {
+      display: flex;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .featured-cover {
+      flex-shrink: 0;
+      width: 100px;
+      height: 150px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(77, 0, 17, 0.15);
+      position: relative;
+    }
+
+    .featured-cover .book-cover {
+      width: 100%;
+      height: 100%;
+    }
+
+    .featured-details {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .featured-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      background: linear-gradient(135deg, var(--pink) 0%, var(--blush) 100%);
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--wine);
+      margin-bottom: 8px;
+      align-self: flex-start;
+    }
+
+    .featured-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--wine);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .featured-author {
+      font-size: 13px;
+      color: var(--warm-gray);
+      margin-bottom: 12px;
+    }
+
+    .featured-genres {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .genre-pill {
+      padding: 4px 10px;
+      background: var(--blush);
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--rose);
+      border: 1px solid rgba(189, 120, 128, 0.15);
+    }
+
+    .featured-progress-bar {
+      margin-top: auto;
+    }
+
+    .progress-label {
+      font-size: 12px;
+      color: var(--warm-gray);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .progress-percentage {
+      color: var(--rose);
+      font-weight: 700;
+    }
+
+    .progress-track {
+      height: 6px;
+      background: var(--blush);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--gradient-rose);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+      position: relative;
+    }
+
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 20px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 100%);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+
+    /* Bottom Navigation */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 430px;
+      width: 100%;
+      background: linear-gradient(180deg, rgba(77, 0, 17, 0.98) 0%, rgba(77, 0, 17, 1) 100%);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(189, 120, 128, 0.2);
+      padding: 12px 24px 28px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-radius: 30px 30px 0 0;
+      box-shadow: 0 -8px 24px rgba(77, 0, 17, 0.4);
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      padding: 8px 16px;
+      border-radius: 16px;
+    }
+
+    .nav-item:active {
+      transform: scale(0.9);
+    }
+
+    .nav-icon {
+      font-size: 22px;
+      color: rgba(255, 217, 217, 0.6);
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .nav-item.active {
+      background: linear-gradient(135deg, rgba(189, 120, 128, 0.3) 0%, rgba(212, 152, 158, 0.2) 100%);
+    }
+
+    .nav-item.active .nav-icon {
+      color: var(--pink);
+      transform: scale(1.1);
+    }
+
+    .nav-item.active::before {
+      content: '';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 3px;
+      background: var(--gradient-rose);
+      border-radius: 0 0 3px 3px;
+    }
+
+    .nav-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255, 217, 217, 0.6);
+      transition: color 0.2s ease;
+    }
+
+    .nav-item.active .nav-label {
+      color: var(--pink);
+    }
+
+    /* Floating Action Button */
+    .fab {
+      position: fixed;
+      bottom: 100px;
+      right: calc(50% - 185px);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--gradient-rose);
+      box-shadow: 0 8px 24px rgba(189, 120, 128, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 100;
+    }
+
+    .fab:active {
+      transform: scale(0.9);
+    }
+
+    .fab i {
+      color: white;
+      font-size: 24px;
+    }
+
+    .fab::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: var(--gradient-rose);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    .fab:hover::before {
+      opacity: 0.3;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.3;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* Sparkle Animation */
+    .sparkles {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .sparkle {
+      position: absolute;
+      font-size: 16px;
+      animation: sparkleOut 0.8s ease-out forwards;
+    }
+
+    @keyframes sparkleOut {
+      0% {
+        transform: translate(0, 0) scale(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--x), var(--y)) scale(1.5) rotate(180deg);
+        opacity: 0;
+      }
+    }
+
+    /* Floating Elements */
+    .float-decoration {
+      position: absolute;
+      font-size: 20px;
+      opacity: 0.15;
+      animation: float 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      33% {
+        transform: translate(10px, -10px) rotate(5deg);
+      }
+      66% {
+        transform: translate(-10px, -20px) rotate(-5deg);
+      }
+    }
+
+    .float-1 {
+      top: 100px;
+      right: 20px;
+      animation-delay: 0s;
+    }
+
+    .float-2 {
+      top: 300px;
+      left: 20px;
+      animation-delay: 2s;
+    }
+
+    .float-3 {
+      top: 500px;
+      right: 30px;
+      animation-delay: 4s;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-container">
+    <div class="phone-notch"></div>
+    <div class="phone-screen">
+      
+      <!-- Header -->
+      <div class="app-header">
+        <div class="header-top">
+          <div class="greeting">
+            <div class="user-avatar">E</div>
+            <div class="greeting-text">
+              <h2>Hi, Emilie!</h2>
+              <p>Ready to dive in?</p>
+            </div>
+          </div>
+          <div class="header-icons">
+            <div class="icon-btn">
+              <i class="pi pi-bell"></i>
+              <span class="badge">3</span>
+            </div>
+            <div class="icon-btn">
+              <i class="pi pi-heart"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="search-container">
+          <i class="pi pi-search search-icon"></i>
+          <input type="text" class="search-input" placeholder="Search for books">
+          <button class="search-btn" onclick="createSparkles(event)">
+            <i class="pi pi-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        
+        <!-- Floating Decorations -->
+        <div class="float-decoration float-1">🌸</div>
+        <div class="float-decoration float-2">🍃</div>
+        <div class="float-decoration float-3">✨</div>
+
+        <!-- Category Tabs -->
+        <div class="category-tabs">
+          <div class="category-tab active">
+            <div class="category-icon">📚</div>
+            <span class="category-label">All</span>
+          </div>
+          <div class="category-tab">
+            <div class="category-icon">📖</div>
+            <span class="category-label">eBooks</span>
+          </div>
+          <div class="category-tab new">
+            <div class="category-icon">🆕</div>
+            <span class="category-label">New</span>
+          </div>
+          <div class="category-tab">
+            <div class="category-icon">📗</div>
+            <span class="category-label">Fiction</span>
+          </div>
+          <div class="category-tab">
+            <div class="category-icon">🌹</div>
+            <span class="category-label">Romance</span>
+          </div>
+          <div class="category-tab">
+            <div class="category-icon">🧙</div>
+            <span class="category-label">Fantasy</span>
+          </div>
+        </div>
+
+        <!-- Continue Reading -->
+        <div class="featured-book">
+          <div class="featured-content">
+            <div class="featured-cover">
+              <div class="book-cover" style="background: var(--gradient-pine);">
+                📖
+              </div>
+              <div class="book-bookmark"></div>
+            </div>
+            <div class="featured-details">
+              <span class="featured-badge">
+                <span>📚</span> Continue Reading
+              </span>
+              <h3 class="featured-title">The Name of the Wind</h3>
+              <p class="featured-author">Patrick Rothfuss</p>
+              <div class="featured-genres">
+                <span class="genre-pill">Fantasy</span>
+                <span class="genre-pill">Adventure</span>
+              </div>
+              <div class="featured-progress-bar">
+                <div class="progress-label">
+                  <span>Chapter 24 of 36</span>
+                  <span class="progress-percentage">67%</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" style="width: 67%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Popular Section -->
+        <section class="section">
+          <div class="section-header">
+            <h3 class="section-title">Popular</h3>
+            <span class="section-action">
+              View All
+              <i class="pi pi-arrow-right"></i>
+            </span>
+          </div>
+          <div class="books-scroll">
+            <div class="book-card">
+              <div class="book-cover-container">
+                <div class="book-cover" style="background: linear-gradient(135deg, #C084FC 0%, #D4989E 100%);">
+                  👑
+                </div>
+                <div class="book-bookmark"></div>
+              </div>
+              <div class="book-info">
+                <h4 class="book-title">Her Radiant Curse</h4>
+                <p class="book-author">Elizabeth Lim</p>
+              </div>
+            </div>
+
+            <div class="book-card">
+              <div class="book-cover-container">
+                <div class="book-cover" style="background: var(--gradient-pine);">
+                  🌿
+                </div>
+                <div class="book-bookmark"></div>
+              </div>
+              <div class="book-info">
+                <h4 class="book-title">Principessa</h4>
+                <p class="book-author">Qorth Nix</p>
+              </div>
+            </div>
+
+            <div class="book-card">
+              <div class="book-cover-container">
+                <div class="book-cover" style="background: var(--gradient-rose);">
+                  💕
+                </div>
+                <div class="book-progress">89%</div>
+              </div>
+              <div class="book-info">
+                <h4 class="book-title">The Seven Husbands</h4>
+                <p class="book-author">Taylor Jenkins</p>
+              </div>
+            </div>
+
+            <div class="book-card">
+              <div class="book-cover-container">
+                <div class="book-cover" style="background: var(--gradient-wine);">
+                  ⚔️
+                </div>
+                <div class="book-progress">23%</div>
+              </div>
+              <div class="book-info">
+                <h4 class="book-title">Fourth Wing</h4>
+                <p class="book-author">Rebecca Yarros</p>
+              </div>
+            </div>
+
+            <div class="book-card">
+              <div class="book-cover-container">
+                <div class="book-cover" style="background: linear-gradient(135deg, #1A4D2E 0%, #8BA888 100%);">
+                  🌙
+                </div>
+              </div>
+              <div class="book-info">
+                <h4 class="book-title">Addie LaRue</h4>
+                <p class="book-author">V.E. Schwab</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- New Releases Section -->
+        <section class="section">
+          <div class="section-header">
+            <h3 class="section-title">New Releases</h3>
+            <span class="section-action">
+              View All
+              <i class="pi pi-arrow-right"></i>
+            </span>
+          </div>
+          <div class="books-scroll">
+            <div class="book-card">
+              <div class="book-cover-container">
+                <div class="book-cover" style="background: linear-gradient(135deg, #D4989E 0%, #BD7880 100%);">
+                  🎭
+                </div>
+              </div>
+              <div class="book-info">
+                <h4 class="book-title">Tom Lake</h4>
+                <p class="book-author">Ann Patchett</p>
+              </div>
+            </div>
+
+            <div class="book-card">
+              <div class="book-cover-container">
+                <div class="book-cover" style="background: linear-gradient(135deg, #FFD9D9 0%, #BD7880 100%);">
+                  💎
+                </div>
+              </div>
+              <div class="book-info">
+                <h4 class="book-title">Happy Place</h4>
+                <p class="book-author">Emily Henry</p>
+              </div>
+            </div>
+
+            <div class="book-card">
+              <div class="book-cover-container">
+                <div class="book-cover" style="background: var(--gradient-elegant);">
+                  👻
+                </div>
+              </div>
+              <div class="book-info">
+                <h4 class="book-title">Holly</h4>
+                <p class="book-author">Stephen King</p>
+              </div>
+            </div>
+
+            <div class="book-card">
+              <div class="book-cover-container">
+                <div class="book-cover" style="background: linear-gradient(135deg, #4D0011 0%, #2D2D2D 100%);">
+                  🔪
+                </div>
+              </div>
+              <div class="book-info">
+                <h4 class="book-title">The Housemaid</h4>
+                <p class="book-author">Freida McFadden</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Trending Section -->
+        <section class="section">
+          <div class="section-header">
+            <h3 class="section-title">Trending Now</h3>
+            <span class="section-action">
+              View All
+              <i class="pi pi-arrow-right"></i>
+            </span>
+          </div>
+          <div class="books-scroll">
+            <div class="book-card">
+              <div class="book-cover-container">
+                <div class="book-cover" style="background: linear-gradient(135deg, #8BA888 0%, #102B1F 100%);">
+                  🌊
+                </div>
+              </div>
+              <div class="book-info">
+                <h4 class="book-title">The Midnight Library</h4>
+                <p class="book-author">Matt Haig</p>
+              </div>
+            </div>
+
+            <div class="book-card">
+              <div class="book-cover-container">
+                <div class="book-cover" style="background: linear-gradient(135deg, #BD7880 0%, #4D0011 100%);">
+                  🔥
+                </div>
+              </div>
+              <div class="book-info">
+                <h4 class="book-title">Iron Flame</h4>
+                <p class="book-author">Rebecca Yarros</p>
+              </div>
+            </div>
+
+            <div class="book-card">
+              <div class="book-cover-container">
+                <div class="book-cover" style="background: var(--gradient-rose);">
+                  ⭐
+                </div>
+              </div>
+              <div class="book-info">
+                <h4 class="book-title">A Court of Silver Flames</h4>
+                <p class="book-author">Sarah J. Maas</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Floating Action Button -->
+      <button class="fab" onclick="createSparkles(event)">
+        <i class="pi pi-plus"></i>
+      </button>
+
+      <!-- Bottom Navigation -->
+      <div class="bottom-nav">
+        <div class="nav-item active">
+          <i class="pi pi-home nav-icon"></i>
+          <span class="nav-label">Home</span>
+        </div>
+        <div class="nav-item">
+          <i class="pi pi-compass nav-icon"></i>
+          <span class="nav-label">Discover</span>
+        </div>
+        <div class="nav-item">
+          <i class="pi pi-book nav-icon"></i>
+          <span class="nav-label">Library</span>
+        </div>
+        <div class="nav-item">
+          <i class="pi pi-heart nav-icon"></i>
+          <span class="nav-label">Favorites</span>
+        </div>
+        <div class="nav-item">
+          <i class="pi pi-user nav-icon"></i>
+          <span class="nav-label">Profile</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Sparkles Container -->
+  <div id="sparkles-container" class="sparkles"></div>
+
+  <script>
+    // Create sparkles effect
+    function createSparkles(event) {
+      const rect = event.target.closest('button').getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+      
+      const container = document.getElementById('sparkles-container');
+      const sparkles = ['✨', '🌸', '🍃'];
+      const numSparkles = 8;
+      
+      for (let i = 0; i < numSparkles; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+        
+        const angle = (i / numSparkles) * Math.PI * 2;
+        const distance = 60;
+        const dx = Math.cos(angle) * distance;
+        const dy = Math.sin(angle) * distance;
+        
+        sparkle.style.left = x + 'px';
+        sparkle.style.top = y + 'px';
+        sparkle.style.setProperty('--x', dx + 'px');
+        sparkle.style.setProperty('--y', dy + 'px');
+        
+        container.appendChild(sparkle);
+        
+        setTimeout(() => {
+          sparkle.remove();
+        }, 800);
+      }
+      
+      // Add bounce animation to button
+      event.target.closest('button').style.transform = 'scale(0.9)';
+      setTimeout(() => {
+        event.target.closest('button').style.transform = '';
+      }, 150);
+    }
+
+    // Bottom nav interaction
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.addEventListener('click', function() {
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // Category tabs interaction
+    document.querySelectorAll('.category-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
