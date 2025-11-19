@@ -1,0 +1,704 @@
+/* sagebound-custom.css */
+/* Custom styling and animations for Sagebound App */
+/* Use alongside PrimeVue theme configuration */
+
+/* ================================
+   CSS Variables
+   ================================ */
+:root {
+  /* Rose & Pine Colors (from mockup) */
+  --sagebound-rose: #BD7880;
+  --sagebound-pink: #FFD9D9;
+  --sagebound-wine: #4D0011;
+  --sagebound-blush: #FFE8E8;
+  --sagebound-soft-rose: #D4989E;
+  --sagebound-pine: #102B1F;
+  --sagebound-sage: #8BA888;
+  --sagebound-forest: #1A4D2E;
+  --sagebound-cream: #FFF5F0;
+  --sagebound-warm-gray: #8B7B7A;
+  --sagebound-charcoal: #2D2D2D;
+
+  /* Legacy support */
+  --sagebound-primary: #BD7880;
+  --sagebound-primary-light: #D4989E;
+  --sagebound-primary-dark: #4D0011;
+  --sagebound-bg: #FFF5F0;
+  --sagebound-surface: #FFFFFF;
+  --sagebound-text: #2D2D2D;
+  --sagebound-text-muted: #8B7B7A;
+  
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-magical: 800ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(255, 107, 157, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(255, 107, 157, 0.1), 0 2px 4px -1px rgba(255, 107, 157, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(255, 107, 157, 0.1), 0 4px 6px -2px rgba(255, 107, 157, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(255, 107, 157, 0.15), 0 8px 10px -6px rgba(255, 107, 157, 0.1);
+  
+  /* Glows */
+  --glow-rose: 0 0 20px rgba(189, 120, 128, 0.4);
+  --glow-pine: 0 0 20px rgba(16, 43, 31, 0.4);
+  --glow-wine: 0 0 20px rgba(77, 0, 17, 0.4);
+
+  /* Gradients */
+  --gradient-rose: linear-gradient(135deg, #BD7880 0%, #D4989E 100%);
+  --gradient-wine: linear-gradient(135deg, #4D0011 0%, #BD7880 100%);
+  --gradient-blush: linear-gradient(135deg, #FFD9D9 0%, #FFE8E8 100%);
+  --gradient-pine: linear-gradient(135deg, #102B1F 0%, #8BA888 100%);
+  --gradient-elegant: linear-gradient(135deg, #102B1F 0%, #4D0011 100%);
+}
+
+/* Dark mode variables */
+[data-theme="dark"] {
+  --sagebound-bg: #102B1F;
+  --sagebound-surface: #1A4D2E;
+  --sagebound-text: #FFE8E8;
+  --sagebound-text-muted: #8BA888;
+}
+
+/* ================================
+   Global Styles
+   ================================ */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+  background: linear-gradient(180deg, #FFF5F0 0%, #FFE8E8 100%);
+  color: var(--sagebound-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings with fantasy font */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cinzel', 'Georgia', serif;
+}
+
+/* ================================
+   Utility Classes
+   ================================ */
+
+/* Gradients */
+.gradient-sunset {
+  background: linear-gradient(135deg, #FF6B9D 0%, #FFB5D8 100%);
+}
+
+.gradient-dragon {
+  background: linear-gradient(135deg, #E94B7F 0%, #8B5CF6 100%);
+}
+
+.gradient-fairy {
+  background: linear-gradient(135deg, #FFD9E8 0%, #FFF0F6 100%);
+}
+
+.gradient-night {
+  background: linear-gradient(135deg, #6B46C1 0%, #1E293B 100%);
+}
+
+/* Text gradients */
+.text-gradient-primary {
+  background: linear-gradient(135deg, #FF6B9D 0%, #8B5CF6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow effects */
+.glow-pink {
+  box-shadow: var(--glow-pink);
+}
+
+.glow-purple {
+  box-shadow: var(--glow-purple);
+}
+
+.glow-gold {
+  box-shadow: var(--glow-gold);
+}
+
+/* ================================
+   Animation Keyframes
+   ================================ */
+
+/* Sparkle effect */
+@keyframes sparkle {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sparkleOut {
+  0% {
+    transform: translate(0, 0) scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--sparkle-x), var(--sparkle-y)) scale(1.5) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+/* Float animation for fantasy elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Shimmer for skeletons */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Pulse glow */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 107, 157, 0.6);
+  }
+}
+
+/* Dragon fly across */
+@keyframes dragonFly {
+  0% {
+    transform: translateX(-100%) translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px)) translateY(-50px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Fairy dust trail */
+@keyframes fairyDust {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-30px) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Book flip */
+@keyframes bookFlip {
+  0% {
+    transform: perspective(600px) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(600px) rotateY(90deg);
+  }
+  100% {
+    transform: perspective(600px) rotateY(0deg);
+  }
+}
+
+/* Scale bounce */
+@keyframes scaleBounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Slide in from right */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Slide in from bottom */
+@keyframes slideInBottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Fade in scale */
+@keyframes fadeInScale {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Magical appearance */
+@keyframes magicalAppear {
+  0% {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1) rotate(0deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* ================================
+   Animation Classes
+   ================================ */
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-gentle {
+  animation: floatGentle 2s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.animate-dragon-fly {
+  animation: dragonFly 2s ease-in-out forwards;
+}
+
+.animate-book-flip {
+  animation: bookFlip 600ms ease-in-out;
+}
+
+.animate-scale-bounce {
+  animation: scaleBounce 500ms ease-in-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 400ms var(--transition-normal);
+}
+
+.animate-slide-in-bottom {
+  animation: slideInBottom 400ms var(--transition-normal);
+}
+
+.animate-fade-in-scale {
+  animation: fadeInScale 300ms var(--transition-normal);
+}
+
+.animate-magical-appear {
+  animation: magicalAppear 500ms var(--transition-magical);
+}
+
+/* ================================
+   Custom Components
+   ================================ */
+
+/* Sparkle Button Enhancement */
+.sparkle-button {
+  position: relative;
+  overflow: visible;
+}
+
+.sparkle-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sparkle-button.sparkling {
+  animation: scaleBounce 500ms ease-in-out;
+}
+
+/* Sparkle particles container */
+.sparkle-particles {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.sparkle-particle {
+  position: absolute;
+  font-size: 12px;
+  animation: sparkleOut 800ms ease-out forwards;
+}
+
+/* Book Card with 3D hover */
+.book-card {
+  position: relative;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+}
+
+.book-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl), var(--glow-pink);
+}
+
+.book-card .book-cover {
+  transition: all var(--transition-normal);
+}
+
+.book-card:hover .book-cover {
+  transform: perspective(600px) rotateY(-5deg);
+}
+
+/* Reading Progress Ring */
+.progress-ring {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+.progress-ring-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--sagebound-primary);
+}
+
+/* Magical Loader */
+.magical-loader {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  animation: float 2s ease-in-out infinite;
+}
+
+.magical-loader::before {
+  content: '🐉';
+  font-size: 48px;
+  position: absolute;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Fairy dust cursor trail (desktop only) */
+@media (hover: hover) {
+  .fairy-dust-trail {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+  }
+  
+  .fairy-dust-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sagebound-primary), var(--sagebound-purple));
+    animation: fairyDust 1s ease-out forwards;
+  }
+}
+
+/* Empty State Illustrations */
+.empty-state {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-lg);
+}
+
+.empty-state-icon {
+  font-size: 96px;
+  margin-bottom: var(--space-lg);
+  animation: floatGentle 3s ease-in-out infinite;
+}
+
+.empty-state-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--sagebound-text);
+  margin-bottom: var(--space-sm);
+}
+
+.empty-state-description {
+  font-size: 16px;
+  color: var(--sagebound-text-muted);
+  margin-bottom: var(--space-xl);
+}
+
+/* Achievement Badge */
+.achievement-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm) var(--space-lg);
+  background: linear-gradient(135deg, var(--sagebound-gold) 0%, #FFA500 100%);
+  border-radius: var(--radius-xl);
+  color: white;
+  font-weight: 700;
+  box-shadow: var(--shadow-lg), var(--glow-gold);
+  animation: scaleBounce 500ms ease-in-out;
+}
+
+.achievement-badge::before {
+  content: '✨';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 20px;
+  animation: float 2s ease-in-out infinite;
+}
+
+/* Stat Card */
+.stat-card {
+  background: var(--sagebound-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg), var(--glow-pink);
+}
+
+.stat-card-value {
+  font-size: 36px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--sagebound-primary) 0%, var(--sagebound-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--space-xs);
+}
+
+.stat-card-label {
+  font-size: 14px;
+  color: var(--sagebound-text-muted);
+  font-weight: 500;
+}
+
+/* Genre Tag */
+.genre-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  background: var(--sagebound-primary-light);
+  color: var(--sagebound-primary-dark);
+  border-radius: var(--radius-xl);
+  font-size: 14px;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.genre-tag:hover {
+  background: var(--sagebound-primary);
+  color: white;
+  transform: scale(1.05);
+}
+
+/* ================================
+   PrimeVue Component Overrides
+   ================================ */
+
+/* Button sparkle effect on click */
+.p-button:active {
+  transform: scale(0.98);
+}
+
+.p-button-primary {
+  transition: all var(--transition-normal);
+}
+
+.p-button-primary:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-lg), var(--glow-pink);
+}
+
+/* Card hover effect */
+.p-card {
+  transition: all var(--transition-normal);
+}
+
+.p-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl), var(--glow-pink);
+}
+
+/* Input focus with glow */
+.p-inputtext:focus {
+  box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1), 0 0 20px rgba(255, 107, 157, 0.2);
+}
+
+/* Dialog magical appearance */
+.p-dialog {
+  animation: fadeInScale 300ms var(--transition-normal);
+}
+
+/* Toast slide in */
+.p-toast-message {
+  animation: slideInRight 400ms var(--transition-normal);
+}
+
+/* TabView active indicator animation */
+.p-tabview-nav-link.p-highlight {
+  position: relative;
+}
+
+.p-tabview-nav-link.p-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--sagebound-primary);
+  animation: slideInBottom 300ms var(--transition-normal);
+}
+
+/* Progress bar with gradient */
+.p-progressbar-value {
+  background: linear-gradient(135deg, var(--sagebound-primary) 0%, var(--sagebound-purple) 100%);
+}
+
+/* Skeleton shimmer */
+.p-skeleton {
+  background: linear-gradient(
+    90deg,
+    #E2E8F0 0%,
+    #F1F5F9 50%,
+    #E2E8F0 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Badge with glow */
+.p-badge-primary {
+  box-shadow: 0 0 10px rgba(255, 107, 157, 0.4);
+}
+
+/* Avatar with border */
+.p-avatar {
+  border: 2px solid var(--sagebound-primary-light);
+}
+
+/* ================================
+   Responsive Adjustments
+   ================================ */
+
+@media (max-width: 768px) {
+  .empty-state-icon {
+    font-size: 64px;
+  }
+  
+  .stat-card-value {
+    font-size: 28px;
+  }
+}
+
+/* ================================
+   Accessibility
+   ================================ */
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid var(--sagebound-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ================================
+   Print Styles
+   ================================ */
+
+@media print {
+  body {
+    background: white;
+  }
+  
+  .animate-float,
+  .animate-pulse-glow,
+  .sparkle-button,
+  .fairy-dust-trail {
+    animation: none !important;
+  }
+}
