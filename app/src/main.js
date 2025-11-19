@@ -1,18 +1,54 @@
-import './assets/theme.css';
-// import 'primevue/resources/themes/aura-light-green/theme.css';
-import 'primevue/resources/primevue.min.css';
-import 'primeicons/primeicons.css';
-import 'primeflex/primeflex.css';
-import PrimeVue from 'primevue/config';
 import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 import App from './App.vue';
-import './style.css';
 import router from './router';
 
+// PrimeVue
+import PrimeVue from 'primevue/config';
+import Aura from '@primevue/themes/aura';
+import sageboundTheme from './theme/sagebound-theme';
+
+// PrimeVue Components (register globally for auth pages)
+import InputText from 'primevue/inputtext';
+import Password from 'primevue/password';
+import Button from 'primevue/button';
+
+// PrimeVue CSS
+import 'primeicons/primeicons.css';
+import 'primeflex/primeflex.css';
+
+// Sagebound Custom Styles
+import './assets/sagebound-custom.css';
+
+// Auth Store
+import { useAuthStore } from './stores/auth';
+
 const app = createApp(App);
-app.use(PrimeVue);
-app.component('InputText', () => import('primevue/inputtext'));
-app.component('Password', () => import('primevue/password'));
-app.component('Button', () => import('primevue/button'));
-app.use(router);
-app.mount('#app');
+const pinia = createPinia();
+
+// Use Pinia first
+app.use(pinia);
+
+// Configure PrimeVue with Sagebound theme
+app.use(PrimeVue, {
+  theme: {
+    preset: Aura,
+    options: {
+      ...sageboundTheme,
+      darkModeSelector: '[data-theme="dark"]',
+      cssLayer: false
+    }
+  }
+});
+
+// Register PrimeVue components globally
+app.component('InputText', InputText);
+app.component('Password', Password);
+app.component('Button', Button);
+
+// Initialize auth state before mounting
+const authStore = useAuthStore();
+authStore.initAuth().then(() => {
+  app.use(router);
+  app.mount('#app');
+});
