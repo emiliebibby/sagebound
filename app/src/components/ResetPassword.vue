@@ -1,3 +1,86 @@
+<script setup>
+/////////////////////////////////////////////////////
+//// ! ResetPassword ! ////
+/////////////////////////////////////////////////////
+
+////////////////////////////////
+//// ! Functional Imports ! ////
+////////////////////////////////
+import { ref } from 'vue'
+import InputText from 'primevue/inputtext'
+import Button from 'primevue/button'
+import Password from 'primevue/password'
+
+///////////////////////////
+//// ! Store Imports ! ////
+///////////////////////////
+
+//////////////////////////
+//// ! View Imports ! ////
+//////////////////////////
+
+///////////////////////////////
+//// ! Component Imports ! ////
+///////////////////////////////
+
+///////////////////////////
+//// ! Model Imports ! ////
+///////////////////////////
+import { sendPasswordResetEmail } from 'firebase/auth'
+import { auth } from '../firebase'
+
+/////////////////////////////////////////
+//// ! Global Variable Definitions ! ////
+/////////////////////////////////////////
+
+///////////////////
+//// ! Props ! ////
+///////////////////
+
+//////////////////////////
+//// ! Define Emits ! ////
+//////////////////////////
+
+/////////////////////////////////
+//// ! Component Variables ! ////
+/////////////////////////////////
+const email = ref('')
+const password = ref('')
+const error = ref('')
+const success = ref('')
+const loading = ref(false)
+
+////////////////////////////////
+//// ! Composable Imports ! ////
+////////////////////////////////
+
+////////////////////
+//// ! Mounts ! ////
+////////////////////
+
+/////////////////////
+//// ! Watches ! ////
+/////////////////////
+
+/////////////////////////////
+//// ! Const Functions ! ////
+/////////////////////////////
+const resetPassword = async () => {
+    error.value = ''
+    success.value = ''
+    loading.value = true
+    try {
+        await sendPasswordResetEmail(auth, email.value)
+        success.value = 'Password reset email sent!'
+        email.value = ''
+    } catch (e) {
+        error.value = e.message
+    } finally {
+        loading.value = false
+    }
+}
+</script>
+
 <template>
     <div class="flex items-center justify-center min-h-screen">
         <div class="p-8 rounded shadow-md w-full max-w-sm">
@@ -16,35 +99,5 @@
         </div>
     </div>
 </template>
-
-<script setup>
-import { ref } from 'vue'
-import InputText from 'primevue/inputtext'
-import Button from 'primevue/button'
-import Password from 'primevue/password'
-import { sendPasswordResetEmail } from 'firebase/auth'
-import { auth } from '../firebase'
-
-const email = ref('')
-const password = ref('')
-const error = ref('')
-const success = ref('')
-const loading = ref(false)
-
-const resetPassword = async () => {
-    error.value = ''
-    success.value = ''
-    loading.value = true
-    try {
-        await sendPasswordResetEmail(auth, email.value)
-        success.value = 'Password reset email sent!'
-        email.value = ''
-    } catch (e) {
-        error.value = e.message
-    } finally {
-        loading.value = false
-    }
-}
-</script>
 
 <style scoped></style>
