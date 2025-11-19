@@ -1,44 +1,70 @@
 <template>
-    <div class="min-h-screen w-full p-0 m-0">
-        <main>
-            <router-view class="flex-1 w-full h-full p-0 m-0" />
+    <div class="app-container">
+        <main class="main-content">
+            <router-view />
         </main>
-        <BottomNav />
+        <BottomNav v-if="showBottomNav" />
     </div>
 </template>
 
 <script setup>
-import BottomNav from './components/BottomNav.vue'
-// No need to import components here, routing handles it
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import BottomNav from './components/common/BottomNav.vue'
+
+const route = useRoute()
+
+// Hide bottom nav on auth pages
+const showBottomNav = computed(() => {
+  const authPages = ['Login', 'Register', 'ResetPassword']
+  return !authPages.includes(route.name)
+})
 </script>
 
-<style scoped>
-:global(body) {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    width: 100vw;
+<style>
+/* Global reset */
+* {
     box-sizing: border-box;
 }
 
-/* Remove margin and padding from #app as well */
-:global(#app) {
+html {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+}
+
+#app {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    position: relative;
+}
+</style>
+
+<style scoped>
+.app-container {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    width: 100vw;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
-.logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-}
-.logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-    filter: drop-shadow(0 0 2em #42b883aa);
+.main-content {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 </style>
