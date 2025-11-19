@@ -25,19 +25,22 @@ import Button from 'primevue/button'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase'
 import { useRouter } from 'vue-router'
+import { useAuthStore } from '../stores/auth'
 
 const email = ref('')
 const password = ref('')
 const error = ref('')
 const loading = ref(false)
 const router = useRouter()
+const authStore = useAuthStore()
 
 const login = async () => {
     error.value = ''
     loading.value = true
     try {
-        await signInWithEmailAndPassword(auth, email.value, password.value)
-        // Redirect or show success
+        const userCredential = await signInWithEmailAndPassword(auth, email.value, password.value)
+        authStore.setUser(userCredential.user)
+        router.push({ name: 'Home' })
     } catch (e) {
         error.value = e.message
     } finally {
