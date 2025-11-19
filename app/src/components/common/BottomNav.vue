@@ -1,3 +1,78 @@
+<script setup>
+/////////////////////////////////////////////////////
+//// ! BottomNav ! ////
+/////////////////////////////////////////////////////
+
+////////////////////////////////
+//// ! Functional Imports ! ////
+////////////////////////////////
+import { useRouter, useRoute } from 'vue-router'
+
+///////////////////////////
+//// ! Store Imports ! ////
+///////////////////////////
+
+//////////////////////////
+//// ! View Imports ! ////
+//////////////////////////
+
+///////////////////////////////
+//// ! Component Imports ! ////
+///////////////////////////////
+
+///////////////////////////
+//// ! Model Imports ! ////
+///////////////////////////
+
+/////////////////////////////////////////
+//// ! Global Variable Definitions ! ////
+/////////////////////////////////////////
+const navItems = [
+  { path: '/', label: 'Home', icon: 'pi-home' },
+  { path: '/discover', label: 'Discover', icon: 'pi-compass' },
+  { path: '/library', label: 'Library', icon: 'pi-book' },
+  { path: '/favorites', label: 'Favorites', icon: 'pi-heart' },
+  { path: '/profile', label: 'Profile', icon: 'pi-user' }
+]
+
+///////////////////
+//// ! Props ! ////
+///////////////////
+
+//////////////////////////
+//// ! Define Emits ! ////
+//////////////////////////
+
+/////////////////////////////////
+//// ! Component Variables ! ////
+/////////////////////////////////
+
+////////////////////////////////
+//// ! Composable Imports ! ////
+////////////////////////////////
+const router = useRouter()
+const route = useRoute()
+
+////////////////////
+//// ! Mounts ! ////
+////////////////////
+
+/////////////////////
+//// ! Watches ! ////
+/////////////////////
+
+/////////////////////////////
+//// ! Const Functions ! ////
+/////////////////////////////
+function goTo(path) {
+  router.push(path)
+}
+
+function isActive(path) {
+  return route.path === path
+}
+</script>
+
 <template>
   <nav class="bottom-nav">
     <div
@@ -11,29 +86,6 @@
     </div>
   </nav>
 </template>
-
-<script setup>
-import { useRouter, useRoute } from 'vue-router'
-
-const router = useRouter()
-const route = useRoute()
-
-const navItems = [
-  { path: '/', label: 'Home', icon: 'pi-home' },
-  { path: '/discover', label: 'Discover', icon: 'pi-compass' },
-  { path: '/library', label: 'Library', icon: 'pi-book' },
-  { path: '/favorites', label: 'Favorites', icon: 'pi-heart' },
-  { path: '/profile', label: 'Profile', icon: 'pi-user' }
-]
-
-function goTo(path) {
-  router.push(path)
-}
-
-function isActive(path) {
-  return route.path === path
-}
-</script>
 
 <style scoped>
 .bottom-nav {

@@ -1,22 +1,36 @@
-<template>
-  <div class="category-tabs">
-    <div
-      v-for="category in categories"
-      :key="category.id"
-      :class="['category-tab', { active: activeCategory === category.id, new: category.isNew }]"
-      @click="selectCategory(category.id)"
-    >
-      <div class="category-icon">
-        {{ category.emoji }}
-      </div>
-      <span class="category-label">{{ category.label }}</span>
-    </div>
-  </div>
-</template>
-
 <script setup>
+/////////////////////////////////////////////////////
+//// ! CategoryTabs ! ////
+/////////////////////////////////////////////////////
+
+////////////////////////////////
+//// ! Functional Imports ! ////
+////////////////////////////////
 import { ref } from 'vue'
 
+///////////////////////////
+//// ! Store Imports ! ////
+///////////////////////////
+
+//////////////////////////
+//// ! View Imports ! ////
+//////////////////////////
+
+///////////////////////////////
+//// ! Component Imports ! ////
+///////////////////////////////
+
+///////////////////////////
+//// ! Model Imports ! ////
+///////////////////////////
+
+/////////////////////////////////////////
+//// ! Global Variable Definitions ! ////
+/////////////////////////////////////////
+
+///////////////////
+//// ! Props ! ////
+///////////////////
 const props = defineProps({
   categories: {
     type: Array,
@@ -35,15 +49,52 @@ const props = defineProps({
   }
 })
 
+//////////////////////////
+//// ! Define Emits ! ////
+//////////////////////////
 const emit = defineEmits(['category-change'])
 
+/////////////////////////////////
+//// ! Component Variables ! ////
+/////////////////////////////////
 const activeCategory = ref(props.initialCategory)
 
+////////////////////////////////
+//// ! Composable Imports ! ////
+////////////////////////////////
+
+////////////////////
+//// ! Mounts ! ////
+////////////////////
+
+/////////////////////
+//// ! Watches ! ////
+/////////////////////
+
+/////////////////////////////
+//// ! Const Functions ! ////
+/////////////////////////////
 function selectCategory(categoryId) {
   activeCategory.value = categoryId
   emit('category-change', categoryId)
 }
 </script>
+
+<template>
+  <div class="category-tabs">
+    <div
+      v-for="category in categories"
+      :key="category.id"
+      :class="['category-tab', { active: activeCategory === category.id, new: category.isNew }]"
+      @click="selectCategory(category.id)"
+    >
+      <div class="category-icon">
+        {{ category.emoji }}
+      </div>
+      <span class="category-label">{{ category.label }}</span>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .category-tabs {

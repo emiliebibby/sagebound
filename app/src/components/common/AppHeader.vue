@@ -1,3 +1,88 @@
+<script setup>
+/////////////////////////////////////////////////////
+//// ! AppHeader ! ////
+/////////////////////////////////////////////////////
+
+////////////////////////////////
+//// ! Functional Imports ! ////
+////////////////////////////////
+import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+
+///////////////////////////
+//// ! Store Imports ! ////
+///////////////////////////
+
+//////////////////////////
+//// ! View Imports ! ////
+//////////////////////////
+
+///////////////////////////////
+//// ! Component Imports ! ////
+///////////////////////////////
+
+///////////////////////////
+//// ! Model Imports ! ////
+///////////////////////////
+
+/////////////////////////////////////////
+//// ! Global Variable Definitions ! ////
+/////////////////////////////////////////
+
+///////////////////
+//// ! Props ! ////
+///////////////////
+const props = defineProps({
+    userName: {
+        type: String,
+        default: 'Reader'
+    },
+    notificationCount: {
+        type: Number,
+        default: 0
+    },
+    searchPlaceholder: {
+        type: String,
+        default: 'Search for books'
+    }
+})
+
+//////////////////////////
+//// ! Define Emits ! ////
+//////////////////////////
+const emit = defineEmits(['search', 'notifications', 'favorites'])
+
+/////////////////////////////////
+//// ! Component Variables ! ////
+/////////////////////////////////
+const searchQuery = ref('')
+const userInitial = computed(() => props.userName.charAt(0).toUpperCase())
+
+////////////////////////////////
+//// ! Composable Imports ! ////
+////////////////////////////////
+const router = useRouter()
+
+////////////////////
+//// ! Mounts ! ////
+////////////////////
+
+/////////////////////
+//// ! Watches ! ////
+/////////////////////
+
+/////////////////////////////
+//// ! Const Functions ! ////
+/////////////////////////////
+function handleSearch() {
+    if (searchQuery.value.trim()) {
+        emit('search', searchQuery.value)
+        // Optionally navigate to search/discover page
+        // router.push({ name: 'Discover', query: { q: searchQuery.value } })
+    }
+}
+</script>
+
 <template>
     <div class="app-header">
         <div class="header-top">
@@ -30,41 +115,6 @@
         </div>
     </div>
 </template>
-
-<script setup>
-import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
-
-const props = defineProps({
-    userName: {
-        type: String,
-        default: 'Reader'
-    },
-    notificationCount: {
-        type: Number,
-        default: 0
-    },
-    searchPlaceholder: {
-        type: String,
-        default: 'Search for books'
-    }
-})
-
-const emit = defineEmits(['search', 'notifications', 'favorites'])
-
-const router = useRouter()
-const searchQuery = ref('')
-
-const userInitial = computed(() => props.userName.charAt(0).toUpperCase())
-
-function handleSearch() {
-    if (searchQuery.value.trim()) {
-        emit('search', searchQuery.value)
-        // Optionally navigate to search/discover page
-        // router.push({ name: 'Discover', query: { q: searchQuery.value } })
-    }
-}
-</script>
 
 <style scoped>
 .app-header {
